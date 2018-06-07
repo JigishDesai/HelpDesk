@@ -10,6 +10,11 @@ namespace HelpDesk.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Users> User { get; set; }
+        public DbSet<Customers> Customer { get; set; }
+        public DbSet<Tickets> Tickets { get; set; }
+        public DbSet<Invoices> Invoices { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

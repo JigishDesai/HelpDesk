@@ -1,0 +1,25 @@
+﻿@model HelpDesk.ViewModels.AddTicketViewModel
+
+<h1>Add Ticket</h1>
+
+<form asp-controller="Ticket" asp-action="Add" method="post">
+
+    <div class="form-group">
+        <label asp-for="Hours"></label>
+        <input class="form-control" asp-for="Hours" />
+        <span asp-validation-for="Hours"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Comments"></label>
+        <input class="form-control" asp-for="Comments" />
+        <span asp-validation-for="Comments"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Customer"></label>
+        <select asp-for="CustomerID" asp-items="Model.Customer"></select>
+    </div>
+        .
+    <input type="submit" value="Add Ticket" />
+
+</form>

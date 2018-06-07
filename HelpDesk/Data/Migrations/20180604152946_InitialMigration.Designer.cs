@@ -11,9 +11,10 @@ using System;
 namespace HelpDesk.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180604152946_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,86 +70,6 @@ namespace HelpDesk.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("HelpDesk.Models.Customers", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Phone");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("HelpDesk.Models.Invoices", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("Amount");
-
-                    b.Property<int>("CustomerID");
-
-                    b.Property<float>("InvoiceHours");
-
-                    b.Property<int>("TicketID");
-
-                    b.Property<int?>("TicketsID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("TicketsID");
-
-                    b.ToTable("Invoices");
-                });
-
-            modelBuilder.Entity("HelpDesk.Models.Tickets", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("AmountInvoiced");
-
-                    b.Property<string>("Comments");
-
-                    b.Property<int>("CustomerID");
-
-                    b.Property<float>("Hours");
-
-                    b.Property<string>("Invoiced");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CustomerID");
-
-                    b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("HelpDesk.Models.Users", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Password")
-                        .IsRequired();
-
-                    b.Property<string>("Username")
-                        .IsRequired();
-
-                    b.HasKey("ID");
-
-                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -257,26 +178,6 @@ namespace HelpDesk.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("HelpDesk.Models.Invoices", b =>
-                {
-                    b.HasOne("HelpDesk.Models.Customers", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HelpDesk.Models.Tickets", "Tickets")
-                        .WithMany()
-                        .HasForeignKey("TicketsID");
-                });
-
-            modelBuilder.Entity("HelpDesk.Models.Tickets", b =>
-                {
-                    b.HasOne("HelpDesk.Models.Customers", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

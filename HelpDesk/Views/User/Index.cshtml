@@ -1,0 +1,21 @@
+﻿@model List<HelpDesk.Models.Users>
+
+<h1>@ViewBag.Title</h1>
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Username</td>
+        </tr>
+    }
+</table>
+
+<p><a asp-controller="User" asp-action="Add">Add Users</a></p>
+<p><a asp-controller="User" asp-action="Remove">Delete Users</a></p>
+<p><a asp-controller="HelpDesk">Home</a></p>

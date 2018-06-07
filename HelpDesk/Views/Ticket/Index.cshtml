@@ -1,0 +1,28 @@
+﻿@model List<HelpDesk.Models.Tickets>
+
+<h1>@ViewBag.Title</h1>
+
+<table class="table">
+
+    <tr>
+        <th>Ticket Number</th>
+        <th>Comments</th>
+        <th>Customer</th>
+        <th>Hours</th>       
+    </tr>
+
+    @foreach (var ticket in Model)
+    {
+        <tr>
+            <td>@ticket.ID</td>
+            <td>@ticket.Comments</td>
+            <td>@ticket.Customer.Name</td>
+            <td>@ticket.Hours</td>            
+        </tr>
+    }
+</table>
+
+<p><a asp-controller="Ticket" asp-action="Add">Add Tickets</a></p>
+@*<p><a asp-controller="Ticket" asp-action="Remove">Delete Tickets</a></p>*@
+<p><a asp-controller="HelpDesk">Home</a></p>
+

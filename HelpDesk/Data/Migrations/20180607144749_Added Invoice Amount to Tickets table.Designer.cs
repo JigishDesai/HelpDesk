@@ -11,9 +11,10 @@ using System;
 namespace HelpDesk.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180607144749_Added Invoice Amount to Tickets table")]
+    partial class AddedInvoiceAmounttoTicketstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,8 +118,6 @@ namespace HelpDesk.Data.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<float>("AmountInvoiced");
 
                     b.Property<string>("Comments");
 

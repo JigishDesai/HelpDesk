@@ -1,0 +1,13 @@
+﻿<h1>Remove User</h1>
+
+<form method="post">
+
+    @foreach (var user in ViewBag.users)
+    {
+        <input type="checkbox" name="userIds" id="@user.ID" value="@user.ID" />
+        <label for="@user.ID">@user.Username</label>
+        <br />
+    }
+
+    <input type="submit" value="Remove Selected User" />
+</form>

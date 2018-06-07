@@ -11,9 +11,10 @@ using System;
 namespace HelpDesk.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180606162152_ChangedHoursToFloat")]
+    partial class ChangedHoursToFloat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,36 +90,10 @@ namespace HelpDesk.Data.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("HelpDesk.Models.Invoices", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("Amount");
-
-                    b.Property<int>("CustomerID");
-
-                    b.Property<float>("InvoiceHours");
-
-                    b.Property<int>("TicketID");
-
-                    b.Property<int?>("TicketsID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("TicketsID");
-
-                    b.ToTable("Invoices");
-                });
-
             modelBuilder.Entity("HelpDesk.Models.Tickets", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<float>("AmountInvoiced");
 
                     b.Property<string>("Comments");
 
@@ -257,18 +232,6 @@ namespace HelpDesk.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("HelpDesk.Models.Invoices", b =>
-                {
-                    b.HasOne("HelpDesk.Models.Customers", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HelpDesk.Models.Tickets", "Tickets")
-                        .WithMany()
-                        .HasForeignKey("TicketsID");
                 });
 
             modelBuilder.Entity("HelpDesk.Models.Tickets", b =>

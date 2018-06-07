@@ -1,0 +1,13 @@
+﻿<h1>Remove Customer</h1>
+
+<form method="post">
+
+    @foreach (var customer in ViewBag.customers)
+    {
+        <input type="checkbox" name="customerIds" id="@customer.ID" value="@customer.ID" />
+        <label for="@customer.ID">@customer.Name</label>
+        <br />
+    }
+
+    <input type="submit" value="Remove Selected User" />
+</form>
